@@ -6,17 +6,14 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**.py' # Change to the file extension of the language that you are using.
 
 jobs:
   deploy:
     steps:
     - name: Checkout Repository
       uses: cloudbees-io/checkout@v1
-      with:
-        fetch-depth: 2 # To fetch the current commit and its parent (so we can compare)
-
+      
+      
     - name: Setup AWS CLI
       uses: cloudbees-io/configure-aws-credentials@v1
       id: aws-login
