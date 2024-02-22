@@ -29,7 +29,7 @@ jobs:
       uses: docker://alpine/git:latest
       run: |
         echo "List of changed files:" 
-        echo $(git diff --name-only HEAD^ HEAD | xargs -I {} echo {})
+        echo $(git diff --name-only HEAD^ HEAD)
 
     - name: Download from Amazon S3
       uses: cloudbees-io/s3-download-object@v1
