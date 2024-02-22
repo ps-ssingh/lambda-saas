@@ -55,9 +55,15 @@ jobs:
                   cat lambda_env/$file
               fi
             done
+          
+
+          cd lambda_env
+          zip -r ../updated_lambda.zip .
+          cd ..
 
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
+    
           
          
 
