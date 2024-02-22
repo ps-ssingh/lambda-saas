@@ -43,7 +43,7 @@ jobs:
           apt-get install zip
           unzip lambda-deployment.zip -d lambda_env
 
-          for file in $(git show --name-only --oneline HEAD |tail -n +2 | grep '\.py$' | while IFS= read -r file)
+          for file in $(git show --name-only --oneline HEAD |tail -n +2 | grep '\.py$')
             do 
               if [[ $file == *.py ]]
                 then
