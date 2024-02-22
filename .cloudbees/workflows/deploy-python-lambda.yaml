@@ -28,17 +28,17 @@ jobs:
         echo "List of changed files:" 
         echo $(git diff --name-only HEAD^ HEAD)
 
-    - name: Download to Amazon S3
+    - name: Download from Amazon S3
       uses: cloudbees-io/s3-download-object@v1
       with:
-          file-path: "/lambda-deployment.zip"
+          file-path: "lambda-deployment.zip"
           bucket-name: "lambda-func-deployment"
           s3-path: "lambda-deployment-5d0b4dc7-13ae-43a1-81ba-d5a2372248ba.zip" 
 
     - name: Unzip and copy modified files 
       uses: docker://alpine/git:latest 
       run: |
-          unzip /lambda-deployment.zip -d lambda_env
+          unzip lambda-deployment.zip -d lambda_env
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
          
