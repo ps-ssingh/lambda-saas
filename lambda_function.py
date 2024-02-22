@@ -1,6 +1,6 @@
-import json
+eimport json
 
-print('Loading new function')
+print('Loading new function be ready')
 
 
 def lambda_handler(event, context):
