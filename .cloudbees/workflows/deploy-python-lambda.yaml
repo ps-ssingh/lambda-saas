@@ -41,6 +41,8 @@ jobs:
           unzip lambda-deployment.zip -d lambda_env
 
           ls -lrt
+          cd lambda_env
+          ls
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
          
