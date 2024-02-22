@@ -48,6 +48,7 @@ jobs:
               if [[ $file == *.py ]]
                 then
                   mkdir -p lambda_env/$(dirname $file)
+              fi
             done
 
         # Copy only the modified .py files from the commit into the unzipped directory
