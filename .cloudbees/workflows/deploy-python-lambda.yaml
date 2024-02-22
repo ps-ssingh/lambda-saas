@@ -40,6 +40,7 @@ jobs:
       shell: sh
       run: |
           apt-get update && apt-get install -y git
+          apt-get install unzip
           unzip lambda-deployment.zip -d lambda_env
 
         # Copy only the modified .py files from the commit into the unzipped directory
