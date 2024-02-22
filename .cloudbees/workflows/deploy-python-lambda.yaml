@@ -44,7 +44,8 @@ jobs:
           unzip lambda-deployment.zip -d lambda_env
 
           for file in $(git diff-tree --no-commit-id --name-only -r HEAD)
-            echo $file
+            do 
+             echo $file
 
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
