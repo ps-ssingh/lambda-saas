@@ -45,7 +45,10 @@ jobs:
 
           for file in $(git diff-tree --no-commit-id --name-only -r HEAD)
             do 
+             
              echo $file
+            
+            done
 
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
