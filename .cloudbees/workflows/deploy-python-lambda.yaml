@@ -38,7 +38,7 @@ jobs:
     - name: Unzip and copy modified files 
       uses: docker://alpine/git:latest 
       run: |
-          unzip lambda_deployment.zip -d lambda_env
+          unzip lambda-deployment.zip -d lambda_env
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
          
