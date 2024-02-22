@@ -12,11 +12,7 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: cloudbees-io/checkout@v1
-      with: 
-        fetch-depth: 0
 
-      
-      
     - name: Setup AWS CLI
       uses: cloudbees-io/configure-aws-credentials@v1
       id: aws-login
@@ -29,7 +25,7 @@ jobs:
       uses: docker://alpine/git:latest
       run: |
         echo "List of changed files:" 
-        echo $(git diff --name-only HEAD^ HEAD)
+        echo $(git show --name-only --oneline HEAD)
 
     - name: Download from Amazon S3
       uses: cloudbees-io/s3-download-object@v1
