@@ -64,6 +64,14 @@ jobs:
 
         # Copy only the modified .py files from the commit into the unzipped directory
         # This will maintain their directory structure.
+
+
+    - name: Upload the modified zip to S3
+      uses: cloudbees-io/s3-upload-object@v1
+      with:
+        file-path: "updated_lambda.zip"
+        bucket-name: "lambda-func-deployment"
+        s3-path: "lamdba_deployment_new.zip"
     
           
          
