@@ -80,9 +80,12 @@ jobs:
         function-name: lambda-deployment
         package-type: Zip
         handler: lambda_handler
-        code-zip: lambda_deployment_new.zip
+        s3-bucket: lambda-func-deployment
+        s3-key: lamdba_deployment_new.zip
+        s3-object-version: ""
         architectures: '["x86_64", "arm64"]'
         runtime: python3.12
+
 
     
           
