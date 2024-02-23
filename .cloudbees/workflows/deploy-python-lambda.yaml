@@ -72,6 +72,19 @@ jobs:
         bucket-name: "lambda-func-deployment"
         s3-path: "lamdba_deployment_new.zip"
     
+    - name: Invoke AWS lambda function
+      id: createOrUpdateLambdaFunctionWithS3
+      uses: cloudbees-io/lambda-create-function@v1
+      with:
+        iam-role-arn: arn:aws:iam::324005994172:role/awslambda-saas
+        function-name: lambda-deployment
+        package-type: Zip
+        handler: lambda_handler
+        code-zip: lambda_deployment_new.zip
+        architectures: '["x86_64", "arm64"]'
+        runtime: python3.12
+
+    
           
          
 
