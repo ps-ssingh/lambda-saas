@@ -36,11 +36,11 @@ jobs:
 
     - name: Unzip and copy modified files 
       uses: docker://ubuntu:latest
-      shell: sh
+      shell: bash
       run: |
-          apt-get update && apt-get install -y git
-          apt-get install unzip
-          apt-get install zip
+          apt-get update && apt-get install -y git unzip zip
+          unzip lambda-deployment.zip -d lambda_env
+
           unzip lambda-deployment.zip -d lambda_env
 
           for file in $(git show --name-only --oneline HEAD |tail -n +2 | grep '\.py$')
