@@ -39,8 +39,6 @@ jobs:
       shell: bash
       run: |
           apt-get update && apt-get install -y git unzip zip
-          unzip lambda-deployment.zip -d lambda_env
-
           unzip -o lambda-deployment.zip -d lambda_env
 
           for file in $(git show --name-only --oneline HEAD |tail -n +2 | grep '\.py$')
@@ -72,7 +70,7 @@ jobs:
         bucket-name: "lambda-func-deployment"
         s3-path: "lamdba_deployment_new.zip"
     
-    - name: Invoke AWS lambda function
+    - name: Update AWS lambda function 
       id: createOrUpdateLambdaFunctionWithS3
       uses: cloudbees-io/lambda-create-function@v1
       with:
