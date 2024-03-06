@@ -30,7 +30,7 @@ jobs:
           aws sts get-caller-identity
           aws s3 ls
           LATEST_FILE=$(aws s3 ls s3://lambda-func-deployment/ --recursive | sort | tail -n 1 | awk '{print $4}')
-          echo "$LATEST_FILE" > > "$CLOUDBEES_OUTPUTS/latest_zip" 
+          echo "$LATEST_FILE" >  "$CLOUDBEES_OUTPUTS/latest_zip" 
 
     
     - name: Check Changed Files
