@@ -13,13 +13,25 @@ jobs:
     - name: Checkout Repository
       uses: cloudbees-io/checkout@v1
 
-    - name: Setup AWS CLI
+    - name: AWS Login
       uses: cloudbees-io/configure-aws-credentials@v1
       id: aws-login
       with:
         aws-region: us-east-1
         aws-access-key-id: ${{ secrets.ss_aws_access_key_id }}
         aws-secret-access-key: ${{ secrets.ss_aws_secret_access_key }}
+
+    - name: AWS CLI testing
+      uses: docker://public.ecr.aws/aws-cli/aws-cli
+      id: fetch_latest_file
+      shell: bash
+      run: |
+          set -x
+          aws sts get-caller-identity
+          aws s3 ls
+          LATEST_FILE=$(aws s3 ls s3://lambda-func-deployment/ --recursive | sort | tail -n 1 | awk '{print $4}')
+          echo "$LATEST_FILE" > > "$CLOUDBEES_OUTPUTS/latest_zip" 
+
     
     - name: Check Changed Files
       uses: docker://alpine/git:latest
@@ -32,7 +44,7 @@ jobs:
       with:
           file-path: "lambda-deployment.zip"
           bucket-name: "lambda-func-deployment"
-          s3-path: "lambda-deployment-5d0b4dc7-13ae-43a1-81ba-d5a2372248ba.zip" 
+          s3-path: "${{ steps.fetch_latest_file.outputs.latest_file_path }}"
 
     - name: Unzip and copy modified files 
       uses: docker://ubuntu:latest
