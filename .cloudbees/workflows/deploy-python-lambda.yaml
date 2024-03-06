@@ -44,7 +44,7 @@ jobs:
       with:
           file-path: "lambda-deployment.zip"
           bucket-name: "lambda-func-deployment"
-          s3-path: "${{ steps.fetch_latest_file.outputs.latest_file_path }}"
+          s3-path: "${{ steps.fetch_latest_file.outputs.latest_zip }}"
 
     - name: Unzip and copy modified files 
       uses: docker://ubuntu:latest
