@@ -52,19 +52,25 @@ jobs:
       run: |
           apt-get update && apt-get install -y git unzip zip
           unzip -o lambda-deployment.zip -d lambda_env
+                    
+          modified_py_files=$(git show --name-only --oneline HEAD | tail -n +2 | grep '\.py$')
 
-          for file in $(git show --name-only --oneline HEAD |tail -n +2 | grep '\.py$')
-            do 
-              if [[ "$file" == *.py ]]
-                then
-                  mkdir -p lambda_env/$(dirname $file)
-                  cp $file lambda_env/$file
-                  # Print what you've done with the file
-                  echo "Copied $file to lambda_env/$file"
-                  echo "Content of $file after copying:"
-                  cat lambda_env/$file
-              fi
-            done
+          if [ -z "$modified_py_files" ]; then
+            echo "No .py files to update."
+          else
+
+            for file in $modified_py_files; 
+              do 
+                if [[ "$file" == *.py ]]
+                  then
+                    mkdir -p lambda_env/$(dirname $file)
+                    cp $file lambda_env/$file
+                    # Print what you've done with the file
+                    echo "Copied $file to lambda_env/$file"
+                    echo "Content of $file after copying:"
+                    cat lambda_env/$file
+                fi
+              done
           
 
           cd lambda_env
