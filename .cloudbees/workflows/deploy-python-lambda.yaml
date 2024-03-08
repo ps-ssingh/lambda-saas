@@ -71,6 +71,7 @@ jobs:
                     cat lambda_env/$file
                 fi
               done
+          fi
           
 
           cd lambda_env
