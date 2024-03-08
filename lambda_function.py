@@ -1,6 +1,6 @@
 import json
 
-print('Loading function to be tested be ready')
+print('Loading function to be ready')
 
 
 def lambda_handler(event, context):
