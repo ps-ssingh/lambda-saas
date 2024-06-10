@@ -103,6 +103,12 @@ jobs:
         architectures: '["x86_64"]'
         runtime: python3.12
 
+    - name: Invoke AWS lambda function
+      id: invokeLambdaFunction
+      uses: cloudbees-io/lambda-invoke-function@v1
+      with:
+        function-name: lambda-deployment
+
 
     
           
