@@ -51,8 +51,7 @@ jobs:
       shell: bash
       run: |
           apt-get update && apt-get install -y git unzip zip
-          unzip -o lambda-deployment.zip -d lambda_env
-                    
+          unzip -o lambda-deployment.zip -d lambda_env         
           modified_py_files=$(git show --name-only --oneline HEAD | tail -n +2 | grep '\.py$')
 
           if [ -z "$modified_py_files" ]; then
